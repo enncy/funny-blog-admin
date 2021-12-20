@@ -1,11 +1,10 @@
 <template>
     <div>
-        <div class="font-v2">
+        <div class="fw-bold mb-2">
             {{ title }}
         </div>
-        <a-divider style="margin: 12px;"></a-divider>
 
-        <div class="p-2">
+        <div class="mb-4">
             <slot></slot>
         </div>
     </div>

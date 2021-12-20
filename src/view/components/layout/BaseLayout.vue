@@ -3,15 +3,32 @@
         <a-layout-sider
             breakpoint="lg"
             collapsed-width="0"
-            v-model:collapsed="collapsed"
-            @collapse="emits('update:collapsed', collapsed)"
+            class="box-shadow-base"
+            v-model:collapsed="layoutStatus.collapsed"
+            :style="themeSetting.menuStyle"
         >
-            <Logo style="height: 32px; margin: 16px" />
+            <div
+                class="mb-3 d-flex justify-content-center align-content-center align-items-center"
+                style="height: 64px"
+            >
+                <Logo />
+            </div>
+
             <slot name="menu" mode="inline"></slot>
         </a-layout-sider>
         <a-layout>
-            <a-layout-header class="bg-white ps-4 pe-4 d-flex">
-                <slot name="header"></slot>
+            <a-layout-header class="bg-white ps-1 d-flex">
+                <div class="fl">
+                    <!-- trigger -->
+                    <Icon
+                        type="icon-outdent"
+                        @click="layoutStatus.collapsed = !layoutStatus.collapsed"
+                        :rotate="layoutStatus.collapsed ? 180 : 0"
+                        class="pointer"
+                        style="line-height: 64px; width: 64px"
+                    />
+                </div>
+                <slot name="header" theme="light"></slot>
             </a-layout-header>
             <a-layout-content class="p-5">
                 <slot></slot>
@@ -27,21 +44,10 @@
 
 <script setup lang="ts">
 import { ref, reactive, toRefs } from "vue";
+import { themeSetting } from "../../../store/setting";
+import { layoutStatus } from "../../../store/status";
 import Footer from "../Footer.vue";
 import Logo from "../Logo.vue";
-
-interface BaseLayoutProps {
-    collapsed?: boolean;
-}
-
-const emits = defineEmits<{
-    (e: "update:collapsed", v: boolean);
-}>();
-
-const props = withDefaults(defineProps<BaseLayoutProps>(), {
-    collapsed: false,
-});
-const {} = toRefs(props);
 </script>
 
 <style scope lang="less"></style>

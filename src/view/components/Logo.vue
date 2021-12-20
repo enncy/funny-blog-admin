@@ -6,8 +6,4 @@
 import { ref, reactive, toRefs } from "vue";
 </script>
 
-<style scope lang="less">
-.logo {
-    color: white;
-}
-</style>
+<style scope lang="less"></style>

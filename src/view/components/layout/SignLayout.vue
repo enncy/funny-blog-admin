@@ -34,7 +34,6 @@ import Footer from "../Footer.vue";
         min-width: 100%;
         min-height: 100%;
         position: relative;
-
         left: 50%;
         transform: translate(-50%);
     }

@@ -1,6 +1,6 @@
 <template>
     <a-layout>
-        <a-layout-header class="header">
+        <a-layout-header class="header" :style="themeSetting.menuStyle">
             <div class="d-flex flex-nowrap ms-5 me-5">
                 <div style="height: 64px">
                     <Logo
@@ -9,7 +9,7 @@
                     />
                 </div>
                 <slot name="menu" mode="horizontal"></slot>
-                <slot name="header" ></slot>
+                <slot name="header"></slot>
             </div>
         </a-layout-header>
         <a-layout-content class="p-5">
@@ -25,6 +25,8 @@
 
 <script setup lang="ts">
 import { ref, reactive, toRefs } from "vue";
+import { themeSetting } from "../../../store/setting";
+
 import Footer from "../Footer.vue";
 import Logo from "../Logo.vue";
 </script>

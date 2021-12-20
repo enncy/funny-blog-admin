@@ -1,5 +1,5 @@
 <template>
-    <a-menu>
+    <a-menu v-model:selectedKeys="layoutStatus.selectedKeys">
         <a-menu-item key="1" @click="router.push('/dashboard')">
             <Icon type="icon-dashboard" />
             <span class="nav-text">导航栏</span>
@@ -23,11 +23,11 @@
 import { MenuProps } from "ant-design-vue";
 import { ref, reactive, toRefs } from "vue";
 import { router } from "../../../route";
+import { layoutStatus } from "../../../store/status";
 
 interface MenusProps extends MenuProps {}
 
 withDefaults(defineProps<MenusProps>(), {});
- 
 </script>
 
 <style scope lang="less"></style>
