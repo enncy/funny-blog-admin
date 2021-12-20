@@ -36,10 +36,14 @@ axios.interceptors.request.use(
         }
         // 加密处理
         let time = Date.now();
-        let obj = Object.assign({}, config.data || {}, config.params || {});
+        // 对路径的参数全部转成字符串
+        let params = asciiSort(config.params || {},true) 
+        let obj = Object.assign({}, config.data || {}, params || {});
+        let token = MD5(obj, time);
+ 
         config.headers = {
-            token: MD5(obj, time),
-            time: time,
+            token,
+            time,
         };
         // 在发送请求之前做些什么
         return config;
@@ -67,18 +71,20 @@ axios.interceptors.response.use(
 
 //传入json对象，和key(任意字符串，越长越好)，获取md5加密
 export function MD5(params: any, time: number) {
-    let str = JSON.stringify(asciiSort(params));
+    let str = JSON.stringify(asciiSort(params,false));
     let s = encodeURIComponent(str + time + key).toLocaleLowerCase();
- 
+    console.log(s);
+    
     return md5(s).toString();
 }
 
 //对json 对象进行 ascii码 排序
-export function asciiSort(obj: any) {
+export function asciiSort(obj: any,toString:boolean) {
+ 
     // 键值排序
     var sortKeys = Reflect.ownKeys(obj).sort();
- 
+
     var newObj = {};
-    sortKeys.forEach((v) => Reflect.set(newObj, v, obj[v]));
+    sortKeys.forEach((v) => Reflect.set(newObj, v, toString? obj[v].toString():obj[v]));
     return newObj;
 }

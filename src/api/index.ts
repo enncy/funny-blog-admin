@@ -1,5 +1,57 @@
+import { BaseModel } from "./models/base";
 import { message } from "ant-design-vue";
 import { AxiosResponse } from "axios";
+import { get, post } from "../utils/request";
+
+export interface Constructor<R> {
+    new (): R;
+}
+
+export class BaseApi<T extends BaseModel> implements Api<T> {
+    public baseUrl: string;
+    constructor(baseUrl: string) {
+        this.baseUrl = baseUrl;
+    }
+
+    selectById(id: number): Promise<Result<T>> {
+        return get(this.baseUrl + "/get/one", { params: id });
+    }
+    selectAll(): Promise<Result<T[]>> {
+        return get(this.baseUrl + "/get/all");
+    }
+    list(page: number, size: number): Promise<Result<T[]>> {
+        return get(this.baseUrl + "/list", { params: { page, size } });
+    }
+    save(target: T): Promise<Result<boolean>> {
+        return post(this.baseUrl + "/insert", target);
+    }
+    update(target: T): Promise<Result<boolean>> {
+        return post(this.baseUrl + "/update", target);
+    }
+    removeById(id: number): Promise<Result<boolean>> {
+        return get(this.baseUrl + "/delete", { params: { id } });
+    }
+    count(): Promise<Result<number>> {
+        return get(this.baseUrl + "/count");
+    }
+}
+
+export interface Api<T extends BaseModel> {
+    selectById(id: number): Promise<Result<T>>;
+
+    selectAll(): Promise<Result<T[]>>;
+
+    list(page: number, size: number): Promise<Result<T[]>>;
+
+    save(target: T): Promise<Result<boolean>>;
+
+    update(target: T): Promise<Result<boolean>>;
+
+    removeById(id: number): Promise<Result<boolean>>;
+
+    count(): Promise<Result<number>>;
+}
+
 export interface ResultBody<T> {
     status: number;
 

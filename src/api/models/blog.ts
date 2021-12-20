@@ -1,26 +1,26 @@
+import { ApiModel, BaseModel, Props } from "./base";
 
 /**
  * 文章表
  */
-export interface Blog {
-    /**
-     * 内容
-     */
-    content?: string;
-    /**
-     * 原文链接
-     */
-    originUrl?: string;
-    /**
-     * 标签
-     */
-    tags?: string;
-    /**
-     * 标题
-     */
-    title?: string;
-    /**
-     * 用户id
-     */
+@ApiModel("博客")
+export class Blog extends BaseModel {
+    @Props("用户id", {
+        type: "number",
+    })
     userId?: number;
+
+    @Props("内容", {
+        type: "textarea",
+    })
+    content?: string;
+
+    @Props("标签")
+    tags?: string;
+
+    @Props("原文链接")
+    originUrl?: string;
+
+    @Props("标题")
+    title?: string;
 }

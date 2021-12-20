@@ -54,6 +54,7 @@ import { ref } from "vue";
 import { handleApiSync } from "../../api";
 import { UserApi } from "../../api/user";
 import { router } from "../../route";
+import { user } from "../../store/user";
 
 import {
     AccountValidators,
@@ -101,10 +102,16 @@ async function onSubmit() {
     const res = await handleApiSync(UserApi.loginByAccount(account, password));
 
     if (res?.data.success) {
-        message.success(res.data.msg);
-        setTimeout(() => {
-            router.push("/");
-        }, 1000);
+        if (res.data.data?.role === "admin") {
+            message.success(res.data.msg);
+            setTimeout(() => {
+                Object.assign(user, res.data.data);
+                console.log(user);
+                router.push("/");
+            }, 1000);
+        } else {
+            message.error("权限不足");
+        }
     }
 
     disabled.value = false;

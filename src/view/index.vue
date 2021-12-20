@@ -20,7 +20,7 @@
             </div>
         </template>
         <template #default>
-            <div class="bg-white" style="min-height: 340px">
+            <div style="min-height: 340px">
                 <router-view v-slot="{ Component }">
                     <transition name="fade" mode="out-in" :duration="200">
                         <keep-alive>

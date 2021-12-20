@@ -1,30 +1,38 @@
- 
+import { ApiModel, BaseModel, Props } from "./base";
+
 /**
  * 用户操作文章信息表
  */
-export interface BlogOperation {
-    /**
-     * 文章id
-     */
+
+@ApiModel("博客操作")
+export class BlogOperation extends BaseModel {
+    @Props("文章id", {
+        type: "number",
+    })
     blogId?: number;
-    /**
-     * 收藏
-     */
-    collect?: boolean;
-    /**
-     * 点赞
-     */
-    favor?: boolean;
-    /**
-     * 反对
-     */
-    oppose?: boolean;
-    /**
-     * 操作的用户id
-     */
+
+    @Props("操作的用户id", {
+        type: "number",
+    })
     userId?: number;
-    /**
-     * 观看
-     */
+
+    @Props("点赞", {
+        type: "checkbox",
+    })
+    favor?: boolean;
+
+    @Props("反对", {
+        type: "checkbox",
+    })
+    oppose?: boolean;
+
+    @Props("收藏", {
+        type: "checkbox",
+    })
+    collect?: boolean;
+
+    @Props("观看", {
+        type: "checkbox",
+    })
     watch?: boolean;
 }

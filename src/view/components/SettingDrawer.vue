@@ -4,6 +4,7 @@
         placement="right"
         v-model:visible="layoutStatus.visible"
         :closable="true"
+        width="300"
     >
         <!--默认的一些主题颜色-->
         <SimpleCard title="通用主题颜色">

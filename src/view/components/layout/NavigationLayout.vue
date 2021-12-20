@@ -12,10 +12,10 @@
                 <slot name="header"></slot>
             </div>
         </a-layout-header>
-        <a-layout-content class="p-5">
+        <a-layout-content class="p-1 p-md-3 p-lg-5  overflow-auto">
             <slot></slot>
         </a-layout-content>
-        <a-layout-footer style="text-align: center">
+        <a-layout-footer class="text-center bg-white">
             <slot name="footer">
                 <Footer />
             </slot>

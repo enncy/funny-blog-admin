@@ -1,5 +1,13 @@
 <template>
-    <div>tables</div>
+    <div>
+        <router-view v-slot="{ Component }">
+            <transition name="fade" mode="out-in" :duration="200">
+                <keep-alive>
+                    <component :is="Component" />
+                </keep-alive>
+            </transition>
+        </router-view>
+    </div>
 </template>
 
 <script setup lang="ts">
