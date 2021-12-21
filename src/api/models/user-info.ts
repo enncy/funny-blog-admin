@@ -1,4 +1,6 @@
+import { UserApi } from "../user";
 import { ApiModel, BaseModel, Props } from "./base";
+import { User } from "./user";
 
 /**
  * 用户信息详情表
@@ -7,6 +9,10 @@ import { ApiModel, BaseModel, Props } from "./base";
 export class UserInfo extends BaseModel {
     @Props("用户id", {
         type: "number",
+        reference: {
+            search: (searchObj: any) => new UserApi().search(searchObj),
+            model: User,
+        },
     })
     userId?: number;
 
@@ -23,15 +29,23 @@ export class UserInfo extends BaseModel {
     })
     age?: number;
 
-    @Props("学校")
+    @Props("学校",{
+        searchable:true
+    })
     school?: string;
 
-    @Props("专业")
+    @Props("专业",{
+        searchable:true
+    })
     major?: string;
 
-    @Props("公司")
+    @Props("公司",{
+        searchable:true
+    })
     company?: string;
 
-    @Props("职位")
+    @Props("职位",{
+        searchable:true
+    })
     position?: string;
 }

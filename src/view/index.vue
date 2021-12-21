@@ -20,6 +20,15 @@
             </div>
         </template>
         <template #default>
+            <!-- 面包屑 -->
+            <a-breadcrumb class="text-start p-1 mb-3">
+                <template v-for="route of matchedRoutes">
+                    <a-breadcrumb-item @click="router.push(route)"> {{route.meta.title}} </a-breadcrumb-item>
+                </template>
+            </a-breadcrumb>
+
+            <!-- 主体内容 -->
+
             <div style="min-height: 340px">
                 <router-view v-slot="{ Component }">
                     <transition name="fade" mode="out-in" :duration="200">
@@ -29,13 +38,15 @@
                     </transition>
                 </router-view>
             </div>
+
+            <!-- 设置侧边栏 -->
             <SettingDrawer />
         </template>
     </component>
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, reactive, ref, watch } from "vue";
+import { computed, defineComponent, reactive, ref, watch } from "vue";
 import { themeSetting } from "../store/setting";
 
 import Menus from "./components/common/Menus.vue";
@@ -43,6 +54,10 @@ import Menus from "./components/common/Menus.vue";
 import SettingDrawer from "./components/SettingDrawer.vue";
 import UserMenu from "./components/common/UserMenu.vue";
 import { layoutStatus } from "../store/status";
+import { useRoute } from "vue-router";
+import { router } from "../route";
+
+const matchedRoutes = computed(() => useRoute().matched);
 </script>
 
 <style scope lang="less">

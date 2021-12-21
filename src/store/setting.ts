@@ -6,6 +6,8 @@ type LayoutType = "BaseLayout" | "NavigationLayout";
 // 主题设置
 
 interface ThemeSettingConfigs {
+    // 语言
+    local:'enUS'|'zhCN',
     layout: LayoutType;
     theme: MenuProps["theme"];
     selectableColor: string[];
@@ -36,6 +38,7 @@ const selectableMenuInfos: { name: MenuProps["theme"]; style: any }[] = [
 
 // 主题设置
 export const themeSetting: ThemeSettingConfigs = reactive<ThemeSettingConfigs>({
+    local:'zhCN',
     layout: "BaseLayout",
     theme: "dark",
     // 主题可选颜色

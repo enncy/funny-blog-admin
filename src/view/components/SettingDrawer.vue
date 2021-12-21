@@ -74,6 +74,18 @@
                 />
             </div>
         </SimpleCard>
+
+        <a-divider />
+
+        <SimpleCard title="全局配置">
+            <p>
+                <span>语言 : </span>
+                <a-select class="fr" v-model:value="themeSetting.local">
+                    <a-select-option key="enUS" value="enUS">English</a-select-option>
+                    <a-select-option key="zhCN" value="zhCN">中文</a-select-option>
+                </a-select>
+            </p>
+        </SimpleCard>
     </a-drawer>
 </template>
 

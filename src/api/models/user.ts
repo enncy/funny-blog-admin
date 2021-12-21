@@ -3,21 +3,35 @@ import { ApiModel, BaseModel, Props } from "./base";
 /**
  * 用户表
  */
-@ApiModel('用户')
+@ApiModel("用户")
 export class User extends BaseModel {
     @Props("密码")
     password?: string;
 
-    @Props("账号")
+    @Props("账号", {
+        searchable: true,
+    })
     account?: string;
 
-    @Props("邮箱")
+    @Props("邮箱", {
+        searchable: true,
+    })
     email?: string;
 
-    @Props("昵称")
+    @Props("昵称", {
+        searchable: true,
+    })
     nickName?: string;
 
-    @Props("权限")
+    @Props("权限", {
+        searchable: true,
+        type:'select',
+        options:[
+            {key:'admin',value:'管理员'},
+            {key:'user',value:'用户'},
+            {key:'visitor',value:'游客'}
+        ]
+    })
     role?: string;
 }
 

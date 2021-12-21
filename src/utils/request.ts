@@ -85,6 +85,6 @@ export function asciiSort(obj: any,toString:boolean) {
     var sortKeys = Reflect.ownKeys(obj).sort();
 
     var newObj = {};
-    sortKeys.forEach((v) => Reflect.set(newObj, v, toString? obj[v].toString():obj[v]));
+    sortKeys.forEach((v) => Reflect.set(newObj, v, toString? obj[v]?.toString():obj[v]));
     return newObj;
 }

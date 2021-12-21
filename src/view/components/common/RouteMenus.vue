@@ -12,7 +12,7 @@
         </a-sub-menu>
     </template>
     <template v-else>
-        <a-menu-item :key="route.name" @click="router.push(route.path)">
+        <a-menu-item :key="route.name" @click="router.push(route)">
             <Icon v-if="route.meta?.icon" :type="route.meta.icon" />
             <span class="nav-text"> {{ route.meta?.title || "未命名" }} </span>
         </a-menu-item>
@@ -29,6 +29,7 @@ interface RouteMenusProps {
 }
 const props = withDefaults(defineProps<RouteMenusProps>(), {});
 const {} = toRefs(props);
+  
 </script>
 
 <style scope lang="less"></style>

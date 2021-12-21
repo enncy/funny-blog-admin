@@ -8,7 +8,10 @@ export const routes = ref<RouteRecordRaw[]>([
         path: "/",
         name: "index",
         component: () => import("@/view/index.vue"),
-
+        redirect:'/dashboard',
+        meta: {
+            title: "首页",
+        },
         children: [
             {
                 path: "/dashboard",
@@ -37,6 +40,7 @@ export const routes = ref<RouteRecordRaw[]>([
                     open: true,
                 },
                 component: () => import("@/view/tables/index.vue"),
+                redirect:'user',
                 children: [
                     {
                         path: "user",

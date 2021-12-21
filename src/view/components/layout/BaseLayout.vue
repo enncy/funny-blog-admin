@@ -31,7 +31,7 @@
                 </div>
                 <slot name="header" theme="light"></slot>
             </a-layout-header>
-            <a-layout-content class="p-1 p-md-3 p-lg-5 overflow-auto">
+            <a-layout-content  style="padding-top: 20px !important;"  class="p-1 p-md-3 p-lg-5  overflow-auto">
                 <slot></slot>
             </a-layout-content>
             <a-layout-footer  class="text-center bg-white">
@@ -49,6 +49,10 @@ import { themeSetting } from "../../../store/setting";
 import { layoutStatus } from "../../../store/status";
 import Footer from "../Footer.vue";
 import Logo from "../Logo.vue";
+
+
+
+
 </script>
 
 <style scope lang="less"></style>

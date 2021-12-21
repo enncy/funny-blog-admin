@@ -5,7 +5,7 @@
         :open-keys="layoutStatus.openKeys"
     >
         <!-- 遍历菜单路由 -->
-        <template v-for="route of menuRoutes.children">
+        <template v-for="route of menuRoutes?.children || []">
             <RouteMenus :route="route" />
         </template>
     </a-menu>

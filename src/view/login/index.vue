@@ -107,7 +107,7 @@ async function onSubmit() {
             setTimeout(() => {
                 Object.assign(user, res.data.data);
                 console.log(user);
-                router.push("/");
+                router.push("/dashboard");
             }, 1000);
         } else {
             message.error("权限不足");

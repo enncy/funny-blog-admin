@@ -4,7 +4,11 @@ import { Result } from ".";
 import { request, get, post } from "../utils/request";
 
 export class UserApi extends BaseApi<User> {
-    baseUrl: string = "/user";
+    static baseUrl: string = "/user";
+
+    constructor(){
+        super(UserApi.baseUrl);
+    }
 
     //登录
     static loginByAccount(account: string, password: string): Promise<Result<User>> {

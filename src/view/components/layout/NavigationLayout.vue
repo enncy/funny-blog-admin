@@ -12,7 +12,7 @@
                 <slot name="header"></slot>
             </div>
         </a-layout-header>
-        <a-layout-content class="p-1 p-md-3 p-lg-5  overflow-auto">
+        <a-layout-content style="padding-top: 20px !important;" class="p-1 p-md-3 p-lg-5  overflow-auto">
             <slot></slot>
         </a-layout-content>
         <a-layout-footer class="text-center bg-white">

@@ -7,7 +7,7 @@
         v-bind="layout"
         @finish="onSubmit"
     >
-        <a-form-item has-feedback name="account">
+        <a-form-item has-feedback name="account" label="账号">
             <a-input
                 placeholder="账号"
                 size="large"
@@ -15,7 +15,7 @@
                 type="text"
             />
         </a-form-item>
-        <a-form-item has-feedback name="password">
+        <a-form-item has-feedback name="password" label="密码">
             <a-input
                 placeholder="密码"
                 size="large"
@@ -23,7 +23,7 @@
                 type="password"
             />
         </a-form-item>
-        <a-form-item has-feedback name="email">
+        <a-form-item has-feedback name="email" label="邮箱">
             <a-input
                 placeholder="邮箱"
                 size="large"
@@ -48,6 +48,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, toRefs } from "vue";
+import { user } from "../../store/user";
 import {
     AccountValidators,
     createForm,
@@ -62,9 +63,9 @@ interface AccountLoginForm {
 }
 const formRef = ref();
 const accountForm = createForm<AccountLoginForm>({
-    account: "",
-    password: "",
-    email: "",
+    account: user.account || "",
+    password: user.password || "",
+    email: user.email || "",
 });
 
 const accountRules = {
