@@ -1,7 +1,7 @@
 <template>
     <a-config-provider :locale="themeSetting.local === 'enUS' ? enUS : zhCN">
         <router-view v-slot="{ Component }">
-            <transition name="fade">
+            <transition name="fade" :duration="100" mode="out-in">
                 <keep-alive>
                     <component :is="Component" />
                 </keep-alive>

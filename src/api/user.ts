@@ -20,4 +20,8 @@ export class UserApi extends BaseApi<User> {
     static logout(): Promise<Result<string>> {
         return get("/user/logout");
     }
+
+    static status():Promise<Result<User>>{
+        return get("/user/status");
+    }
 }

@@ -15,6 +15,14 @@
                     <Icon type="icon-login" />
                     <a>登录</a>
                 </a-menu-item>
+
+                <a-menu-item>
+                    <a href="https://blog.enncy.cn">
+                        <Icon type="icon-logout" />
+                        <span>博客首页</span>
+                    </a>
+                </a-menu-item>
+
                 <a-menu-item @click="logout">
                     <Icon type="icon-logout" />
                     <a>退出</a>

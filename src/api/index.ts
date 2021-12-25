@@ -1,4 +1,4 @@
-import { BaseModel } from "./models/base";
+import { BaseModel, Model } from "./models/base";
 import { message } from "ant-design-vue";
 import { AxiosResponse } from "axios";
 import { get, post } from "../utils/request";
@@ -8,7 +8,7 @@ export interface Constructor<R> {
     new (): R;
 }
 
-export class BaseApi<T extends BaseModel> implements Api<T> {
+export class BaseApi<T extends Model> implements Api<T> {
     public baseUrl: string;
     constructor(baseUrl: string) {
         this.baseUrl = baseUrl;
@@ -23,10 +23,10 @@ export class BaseApi<T extends BaseModel> implements Api<T> {
     public list(page: number, size: number, args: any): Promise<Result<Page<T>>> {
         return get(this.baseUrl + "/list", { params: { page, size, ...args } });
     }
-    public save(target: T): Promise<Result<boolean>> {
+    public save(target: any): Promise<Result<boolean>> {
         return post(this.baseUrl + "/insert", target);
     }
-    public update(target: T): Promise<Result<boolean>> {
+    public update(target: any): Promise<Result<boolean>> {
         return post(this.baseUrl + "/update", target);
     }
     public removeById(id: number): Promise<Result<boolean>> {
@@ -37,7 +37,7 @@ export class BaseApi<T extends BaseModel> implements Api<T> {
     }
 }
 
-export interface Api<T extends BaseModel> {
+export interface Api<T extends Model> {
     selectById(id: number): Promise<Result<T>>;
 
     search(searchObj: any): Promise<Result<T[]>>;

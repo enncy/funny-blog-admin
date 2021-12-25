@@ -7,7 +7,7 @@
         width="300"
     >
         <!--默认的一些主题颜色-->
-        <SimpleCard title="通用主题颜色">
+        <SimpleCard title="通用主题颜色"  class="mb-4">
             <div class="d-flex">
                 <div
                     v-for="(color, index) in themeSetting.selectableColor"
@@ -20,7 +20,7 @@
         </SimpleCard>
 
         <!--自定义主色，也就是 @primary-color-->
-        <SimpleCard title="自定义主题颜色">
+        <SimpleCard title="自定义主题颜色"  class="mb-4">
             <div class="d-flex flex-wrap">
                 <div class="col-12">
                     <span>主题色</span>
@@ -41,7 +41,7 @@
             </div>
         </SimpleCard>
 
-        <SimpleCard title="菜单栏颜色">
+        <SimpleCard title="菜单栏颜色"  class="mb-4">
             <div class="d-flex">
                 <template v-for="infos of themeSetting.selectableMenuInfos">
                     <div
@@ -60,7 +60,7 @@
 
         <a-divider />
 
-        <SimpleCard title="布局管理">
+        <SimpleCard title="布局管理"  class="mb-4">
             <div>
                 <img
                     class="cursor-pointer"
@@ -77,7 +77,7 @@
 
         <a-divider />
 
-        <SimpleCard title="全局配置">
+        <SimpleCard title="全局配置"  class="mb-4">
             <p>
                 <span>语言 : </span>
                 <a-select class="fr" v-model:value="themeSetting.local">

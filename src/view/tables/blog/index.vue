@@ -11,7 +11,6 @@
 import { ref,reactive,toRefs } from 'vue';
 import { BlogApi } from '../../../api/blog';
 import { Blog } from '../../../api/models/blog';
-import ServiceTable from '../../components/service/ServiceTable.vue';
 import ServicePanel from '../../components/service/ServicePanel.vue';
 import { models } from '../../../store/models';
 

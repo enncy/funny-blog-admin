@@ -8,7 +8,7 @@ export const routes = ref<RouteRecordRaw[]>([
         path: "/",
         name: "index",
         component: () => import("@/view/index.vue"),
-        redirect:'/dashboard',
+        redirect: "/dashboard",
         meta: {
             title: "首页",
         },
@@ -40,7 +40,7 @@ export const routes = ref<RouteRecordRaw[]>([
                     open: true,
                 },
                 component: () => import("@/view/tables/index.vue"),
-                redirect:'user',
+                redirect: "user",
                 children: [
                     {
                         path: "user",
@@ -60,16 +60,16 @@ export const routes = ref<RouteRecordRaw[]>([
                             icon: "icon-file-text",
                         },
                     },
+                    {
+                        path: "setting",
+                        name: "tables-setting",
+                        meta: {
+                            title: "系统设置",
+                            icon: "icon-setting",
+                        },
+                        component: () => import("@/view/tables/setting/index.vue"),
+                    },
                 ],
-            },
-            {
-                path: "/setting",
-                name: "setting",
-                meta: {
-                    title: "系统设置",
-                    icon: "icon-setting",
-                },
-                component: () => import("@/view/setting/index.vue"),
             },
 
             {

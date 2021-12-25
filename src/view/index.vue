@@ -23,7 +23,9 @@
             <!-- 面包屑 -->
             <a-breadcrumb class="text-start p-1 mb-3">
                 <template v-for="route of matchedRoutes">
-                    <a-breadcrumb-item @click="router.push(route)"> {{route.meta.title}} </a-breadcrumb-item>
+                    <a-breadcrumb-item @click="router.push(route)">
+                        {{ route.meta.title }}
+                    </a-breadcrumb-item>
                 </template>
             </a-breadcrumb>
 
@@ -31,7 +33,7 @@
 
             <div style="min-height: 340px">
                 <router-view v-slot="{ Component }">
-                    <transition name="fade" mode="out-in" :duration="200">
+                    <transition name="fade" mode="out-in" :duration="100">
                         <keep-alive>
                             <component :is="Component" />
                         </keep-alive>
@@ -64,15 +66,5 @@ const matchedRoutes = computed(() => useRoute().matched);
 .header-icon {
     line-height: 64px;
     width: 64px;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
 }
 </style>

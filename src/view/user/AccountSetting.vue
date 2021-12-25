@@ -2,7 +2,7 @@
     <a-form
         name="custom-validation"
         ref="formRef"
-        :model="accountForm"
+        :model="user"
         :rules="accountRules"
         v-bind="layout"
         @finish="onSubmit"
@@ -11,15 +11,15 @@
             <a-input
                 placeholder="账号"
                 size="large"
-                v-model:value.trim="accountForm.account"
+                v-model:value.trim="user.account"
                 type="text"
             />
         </a-form-item>
         <a-form-item has-feedback name="password" label="密码">
-            <a-input
+            <a-input-password
                 placeholder="密码"
                 size="large"
-                v-model:value.trim="accountForm.password"
+                v-model:value.trim="user.password"
                 type="password"
             />
         </a-form-item>
@@ -27,10 +27,20 @@
             <a-input
                 placeholder="邮箱"
                 size="large"
-                v-model:value.trim="accountForm.email"
+                v-model:value.trim="user.email"
                 type="email"
             />
         </a-form-item>
+
+        <a-form-item has-feedback name="nickName" label="昵称">
+            <a-input
+                placeholder="昵称"
+                size="large"
+                v-model:value.trim="user.nickName"
+                type="text"
+            />
+        </a-form-item>
+
         <a-form-item>
             <div class="row gx-5">
                 <div class="col-6">
@@ -47,7 +57,11 @@
 </template>
 
 <script setup lang="ts">
+import { message } from "ant-design-vue";
 import { ref, reactive, toRefs } from "vue";
+import { handleApiSync } from "../../api";
+import { User } from "../../api/models/user";
+import { UserApi } from "../../api/user";
 import { user } from "../../store/user";
 import {
     AccountValidators,
@@ -56,17 +70,7 @@ import {
     Validator,
 } from "../../utils/form";
 
-interface AccountLoginForm {
-    account: string;
-    password: string;
-    email: string;
-}
 const formRef = ref();
-const accountForm = createForm<AccountLoginForm>({
-    account: user.account || "",
-    password: user.password || "",
-    email: user.email || "",
-});
 
 const accountRules = {
     account: {
@@ -86,6 +90,13 @@ const accountRules = {
         ),
         trigger: "blur",
     },
+    nickName: {
+        required: false,
+        validator: Validator.all(
+            Validator.regexpFilter((filter) => filter.blank().specialChar(true))
+        ),
+        trigger: "blur",
+    },
 };
 
 const layout = {
@@ -94,8 +105,18 @@ const layout = {
 
 const disabled = ref(false);
 
-function onSubmit() {
-    console.log();
+async function onSubmit() {
+    disabled.value = true;
+    const { id, account, password, email, nickName } = user;
+    const res = await handleApiSync(
+        new UserApi().update({ id, account, password, email, nickName })
+    );
+    if (res?.data.success && res?.data.data) {
+        message.success(res.data.msg);
+    } else {
+        message.error("更新失败");
+    }
+    disabled.value = false;
 }
 </script>
 

@@ -21,7 +21,7 @@
                     />
                 </a-form-item>
                 <a-form-item has-feedback name="password">
-                    <a-input
+                    <a-input-password
                         placeholder="密码"
                         size="large"
                         v-model:value.trim="accountForm.password"

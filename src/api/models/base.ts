@@ -1,8 +1,15 @@
 import "reflect-metadata";
 import { Constructor, Result } from "..";
 
+export interface Model {
+    [x: string]: any;
+    id?: number;
+    createTime?: number;
+    updateTime?: number;
+}
+
 @ApiModel("基础对象")
-export class BaseModel {
+export class BaseModel implements Model {
     [x: string]: any;
 
     constructor() {
@@ -38,7 +45,7 @@ export class BaseModel {
         return BaseModel.apiTitle(this);
     }
 
-    static apiTitle(target: BaseModel): string {
+    static apiTitle(target: Model): string {
         return Reflect.getMetadata("api:model", target.constructor);
     }
 
@@ -47,7 +54,7 @@ export class BaseModel {
         return BaseModel.infos(this);
     }
 
-    public static infos(target: BaseModel) {
+    public static infos(target: Model) {
         let keys = Reflect.ownKeys(target)
             .map((k) => k.toString())
             .filter((k) => !["updateTime", "createTime", "id"].includes(k));
@@ -104,5 +111,5 @@ export interface PropsConfig {
     // 外键
     reference?: ReferenceConfig<any>;
     // 可选项 要搭配 type 为 select 的类型
-    options?: {key:string,value:string}[];
+    options?: { key: string; value: string }[];
 }

@@ -16,6 +16,9 @@ export class RegExpFilter {
     // 特殊字符
     static SPECIAL_CHAR: RegExp = /[^\w]/;
 
+    // 特殊字符，中文除外
+    static SPECIAL_CHAR_WITHOUT_ZHCN = /[^\w\u4e00-\u9fa5]/;
+
     target: string = "";
     errors: {
         error: boolean;
@@ -76,8 +79,8 @@ export class RegExpFilter {
         return this.test(RegExpFilter.CN_CHAR, "不能有中文");
     }
 
-    specialChar(): RegExpFilter {
-        return this.test(RegExpFilter.SPECIAL_CHAR, "不能有特殊字符");
+    specialChar(zh_CN?: boolean): RegExpFilter {
+        return this.test(zh_CN ? RegExpFilter.SPECIAL_CHAR_WITHOUT_ZHCN : RegExpFilter.SPECIAL_CHAR, "不能有特殊字符");
     }
 
     test(reg: RegExp, msg: string) {

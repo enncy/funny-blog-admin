@@ -4,7 +4,7 @@
             {{ title }}
         </div>
 
-        <div class="mb-4">
+        <div>
             <slot></slot>
         </div>
     </div>
